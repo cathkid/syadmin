@@ -151,7 +151,7 @@
 			  </el-form>
 			  <div slot="footer" class="dialog-footer">
 			    <el-button @click="dialogFormVisible1 = false">取 消</el-button>
-			    <el-button type="primary" @click="submit2()">确 定</el-button>
+			    <el-button type="primary" @click="submit2(deve[0].id)">确 定</el-button>
 			  </div>
 			</el-dialog>
 			
@@ -172,7 +172,7 @@
         search:null,
         dialogFormVisible:false,
         dialogFormVisible1:false,
-        deve:[{ "weight":100, "year":2017,"month":1,"title":'',"content":'',"top":2}],
+        deve:[{ "weight":100, "year":2017,"month":1,"title":'',"content":'',"top":2,"id":0}],
       }
     },
     methods:{
@@ -202,7 +202,6 @@
 			 		 axios.post('http://127.0.0.1/data/admindata.php',params)
 				  .then(function (response) {
 				  	_this.tableData = response.data.info 
-				  	_this.tableData.time = _this.getLocalTime(_this.tableData.time) 
 				  	_this.loading=false 
 				  })
 			 
@@ -254,6 +253,34 @@
 						  	_this.getinfo() 
 						  	_this.loading=false
 						  	_this.dialogFormVisible = false
+						  })
+						  .catch(function (response) {
+						    console.log(response) 
+						  }) 
+		    },
+		    submit2:function(id){
+		    	var _this = this
+		    	if(_this.deve[0].title == '' && _this.deve[0].content == ''){
+		    		alert('请填写完整');
+		    		return false;
+		    	}
+		    	var params = new URLSearchParams() 
+						 params.append('status', 'edit_deve')
+						 params.append('weight',_this.deve[0].weight)
+						 params.append('year', _this.deve[0].year)
+						 params.append('month',_this.deve[0].month)
+						 params.append('title', _this.deve[0].title)
+						 params.append('content',_this.deve[0].content)
+						 params.append('top',_this.deve[0].top)
+						 params.append('id',_this.deve[0].id)
+						 var _this = this 		 
+						 _this.loading=true 
+		    	 	 axios.post('http://127.0.0.1/data/admindata.php',params)
+						  .then(function (response) {
+						  	alert('修改成功！');
+						  	_this.getinfo() 
+						  	_this.loading=false
+						  	_this.dialogFormVisible1 = false
 						  })
 						  .catch(function (response) {
 						    console.log(response) 
