@@ -1,0 +1,109 @@
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top:40px;
+}
+.header{
+  height: 40px;
+	line-height: 40px;
+	background: #20a0ff;
+	color: #fff;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-indent: 5%;
+	text-align: left;
+}
+.float-right {
+	float: right;
+	padding-right: 5px;
+	margin-top: 15px;
+}
+.pagebox{
+	margin-top: 20px;
+	float: right;
+}
+.contents{
+  background: #fff;
+}
+.el-table__body-wrapper {
+  overflow: hidden;
+}
+.nav-menu{
+	height: 40px;
+	line-height: 40px;
+	background-color: #606266;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 200;
+}
+.table-menu{
+  height: 40px;
+	font-size: 12px;
+	font-weight: 100;
+	text-align: left;
+	text-indent: 10px;
+	line-height: 40px;
+	background-color: #f1f1f1;
+}
+.login-box{
+	width: 300px;
+	height: 300px;
+	padding: 20px;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	left: 50%;
+	top: 20%;
+	margin-left: -150px;
+	position: absolute;
+}
+.login-box input{
+	margin-top: 25px;
+}
+.login-box  button{
+	margin-top: 20px;
+}
+.system_box{
+	width: 100px;
+	height: 80px;
+	border: 1px solid #eee;
+	position: absolute;
+	top: 42px;
+	left: 83.33%;
+	background: #fff;
+	z-index: 1;
+	padding: 20px 0;
+	font-size: 12px;
+}
+.system_box li{
+	border-bottom: 1px solid #eee;
+	height: 40px;
+	line-height: 40px;
+}
+.top_menu{
+	height: 40px;
+}
+.system_btn{
+	height: 40px;
+	text-align: left;
+	cursor: pointer;
+}
+.system_menu{
+	float: left;
+	line-height: 40px;
+}
+.el-dropdown-link{
+	color:#fff;
+}
+.el-menu {
+    border-right: 1px solid #fff;
+}
+.search-box{
+	background-color: #fff;
+	height: 40px;
+	padding: 5px 0;
+	width:100%;
+}
