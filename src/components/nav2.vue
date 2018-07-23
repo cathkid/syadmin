@@ -11,14 +11,15 @@
 		    <el-table-column prop="weight" sortable label="权重" > </el-table-column>
 		    <el-table-column  prop="year"  label="年份"> </el-table-column>
 		    <el-table-column  prop="month" label="月份"> </el-table-column>
+		    <el-table-column  prop="top" label="纵向位置"> </el-table-column>
 				<el-table-column  prop="title" label="标题"> </el-table-column>
 		    <el-table-column  prop="content" label="内容"> </el-table-column>
 		    <el-table-column  label="操作"> 
 		    	 <template slot-scope="scope">
-		        <el-button @click.native.prevent="del_data(scope.$index,tableData)" type="text" size="small">
+		        <el-button @click.native.prevent="del_data(scope.$index,scope.row.id,tableData)" type="text" size="small">
 		          	移除
 		        </el-button>
-		         <el-button @click.native.prevent="edit_data(scope.$index,tableData)" type="text" size="small">
+		         <el-button @click.native.prevent="edit_data(scope.row.id,tableData[scope.$index])" type="text" size="small">
 		          	编辑
 		        </el-button>
 		      </template>
@@ -30,26 +31,25 @@
 				</el-pagination>  			
   		</div>
   		
-  		
   		<el-dialog title="添加发展" :visible.sync="dialogFormVisible">
 			  <el-form >
-			    <el-form-item label="权重排序" :label-width="formLabelWidth">
-			      <el-input v-model="deve.weight" auto-complete="off" placeholder="100的倍数,数值越小越靠前"></el-input>
+			    <el-form-item label="权重排序"  >
+			      <el-input v-model="deve[0].weight" value="100" auto-complete="off" placeholder="10的倍数,数值越大越靠前"></el-input>
 			    </el-form-item>
-			    <el-form-item label="发展年份" :label-width="formLabelWidth">
-			      <el-select style="width: 100%;" v-model="deve.year" placeholder="请选择年份" >
-			        <el-option label="2017" value="2017"></el-option>
-			        <el-option selected="selected" label="2018" value="2018"></el-option>
-			        <el-option label="2019" value="2019"></el-option>
-			        <el-option label="2020" value="2020"></el-option>
-			        <el-option label="2021" value="2021"></el-option>
-			        <el-option label="2022" value="2022"></el-option>
-			        <el-option label="2023" value="2023"></el-option>
-			        <el-option label="2024" value="2024"></el-option>
+			    <el-form-item label="发展年份"  >
+			      <el-select style="width: 100%;" v-model="deve[0].year" placeholder="请选择年份" >
+			        <el-option label="2017" value="2017">2017</el-option>
+			        <el-option label="2018" value="2018">2018</el-option>
+			        <el-option label="2019" value="2019">2019</el-option>
+			        <el-option label="2020" value="2020">2020</el-option>
+			        <el-option label="2021" value="2021">2021</el-option>
+			        <el-option label="2022" value="2022">2022</el-option>
+			        <el-option label="2023" value="2023">2023</el-option>
+			        <el-option label="2024" value="2024">2024</el-option>
 			      </el-select>
 		    	</el-form-item>
-			    <el-form-item label="发展月份" :label-width="formLabelWidth">
-			      <el-select style="width: 100%;" v-model="deve.month" placeholder="请选择月份" >
+			    <el-form-item label="发展月份"  >
+			      <el-select style="width: 100%;" v-model="deve[0].month" placeholder="请选择月份" >
 			        <el-option label="1" value="1"></el-option>
 			        <el-option label="2" value="2"></el-option>
 			        <el-option label="3" value="3"></el-option>
@@ -63,16 +63,98 @@
 			        <el-option label="11" value="11"></el-option>
 			        <el-option label="12" value="12"></el-option>
 			      </el-select>
-		    	</el-form-item>		    	
-		    	
+		    	</el-form-item>		
+		    	<el-form-item label="文字位置"  >
+			      <el-select style="width: 100%;" v-model="deve[0].top" placeholder="请选择文字位置" >
+			        <el-option label="1" value="1"></el-option>
+			        <el-option label="2" value="2"></el-option>
+			        <el-option label="3" value="3"></el-option>
+			        <el-option label="4" value="4"></el-option>
+			      </el-select>
+		    	</el-form-item>
+		    	<el-form-item label="标题名称"  >
+			      <el-input v-model="deve[0].title" auto-complete="off" placeholder="标题名称" value="标题名称"></el-input>
+			    </el-form-item>
+			    
+			    <el-form-item label="发展内容"  >
+			      <el-input
+					  type="textarea"
+					  :rows="2"
+					  placeholder="请输入内容"
+					  v-model="deve[0].content">
+					 </el-input>
+		    	</el-form-item>
+		    	 
 			  </el-form>
 			  <div slot="footer" class="dialog-footer">
 			    <el-button @click="dialogFormVisible = false">取 消</el-button>
-			    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+			    <el-button type="primary" @click="submit1()">确 定</el-button>
 			  </div>
-			</el-dialog>  	
-  		
-  		
+			</el-dialog>
+			
+			
+			
+			<el-dialog title="编辑" :visible.sync="dialogFormVisible1">
+			  <el-form >
+			    <el-form-item label="权重排序"  >
+			      <el-input v-model="deve[0].weight" value="100" auto-complete="off" placeholder="10的倍数,数值越大越靠前"></el-input>
+			    </el-form-item>
+			    <el-form-item label="发展年份"  >
+			      <el-select style="width: 100%;" v-model="deve[0].year" placeholder="请选择年份" >
+			        <el-option label="2017" value="2017">2017</el-option>
+			        <el-option label="2018" value="2018">2018</el-option>
+			        <el-option label="2019" value="2019">2019</el-option>
+			        <el-option label="2020" value="2020">2020</el-option>
+			        <el-option label="2021" value="2021">2021</el-option>
+			        <el-option label="2022" value="2022">2022</el-option>
+			        <el-option label="2023" value="2023">2023</el-option>
+			        <el-option label="2024" value="2024">2024</el-option>
+			      </el-select>
+		    	</el-form-item>
+			    <el-form-item label="发展月份"  >
+			      <el-select style="width: 100%;" v-model="deve[0].month" placeholder="请选择月份" >
+			        <el-option label="1" value="1"></el-option>
+			        <el-option label="2" value="2"></el-option>
+			        <el-option label="3" value="3"></el-option>
+			        <el-option label="4" value="4"></el-option>
+			        <el-option label="5" value="5"></el-option>
+			        <el-option label="6" value="6"></el-option>
+			        <el-option label="7" value="7"></el-option>
+			        <el-option label="8" value="8"></el-option>
+			        <el-option label="9" value="9"></el-option>
+			        <el-option label="10" value="10"></el-option>
+			        <el-option label="11" value="11"></el-option>
+			        <el-option label="12" value="12"></el-option>
+			      </el-select>
+		    	</el-form-item>		
+		    	<el-form-item label="文字位置"  >
+			      <el-select style="width: 100%;" v-model="deve[0].top" placeholder="请选择文字位置" >
+			        <el-option label="1" value="1"></el-option>
+			        <el-option label="2" value="2"></el-option>
+			        <el-option label="3" value="3"></el-option>
+			        <el-option label="4" value="4"></el-option>
+			      </el-select>
+		    	</el-form-item>
+		    	<el-form-item label="标题名称"  >
+			      <el-input v-model="deve[0].title" auto-complete="off" placeholder="标题名称" value="标题名称"></el-input>
+			    </el-form-item>
+			    
+			    <el-form-item label="发展内容"  >
+			      <el-input
+					  type="textarea"
+					  :rows="2"
+					  placeholder="请输入内容"
+					  v-model="deve[0].content">
+					 </el-input>
+		    	</el-form-item>
+		    	 
+			  </el-form>
+			  <div slot="footer" class="dialog-footer">
+			    <el-button @click="dialogFormVisible1 = false">取 消</el-button>
+			    <el-button type="primary" @click="submit2()">确 定</el-button>
+			  </div>
+			</el-dialog>
+			
   </div>
   
 </template>
@@ -89,7 +171,8 @@
         loading:false,
         search:null,
         dialogFormVisible:false,
-        deve:[{ "weight": 0, "year":2017,"month":1,"title":'',"content":''}]
+        dialogFormVisible1:false,
+        deve:[{ "weight":100, "year":2017,"month":1,"title":'',"content":'',"top":2}],
       }
     },
     methods:{
@@ -127,31 +210,55 @@
 			 	getLocalTime:function(nS) {     
 		    		return new Date(parseInt(nS) * 1000).toLocaleString().substr(0,17) 
 		    },
-		    del_data:function(index,rows){
+		    del_data:function(index,id,rows){
 		    		if(confirm('确认删除?')){
-		    			 rows.splice(index,1) 
+		    			 rows.splice(index,1);
+		    			  var _this = this 	
+								 _this.loading=true 
+								 var params = new URLSearchParams() 
+										 params.append('status', 'del_deve')
+										 params.append('id', id) 
+								 		 axios.post('http://127.0.0.1/data/admindata.php',params)
+									  .then(function (response){
+									  	alert('删除成功！'); 
+									  	_this.getinfo() 
+									  	_this.loading=false 
+									  })
 		    		}
+		    } ,
+		    edit_data:function(id,rows){
+		    	 console.info(rows)
+		    	 this.deve[0] = rows;
+		    	 this.dialogFormVisible1 = true
 		    },
-      searchIp:function(){
-		    if(this.search == null){
-						return;
-				}
-        var params = new URLSearchParams() 
-        params.append('status', 'searchdeve')
-        params.append('username',this.search)
-        var _this = this 
-        _this.loading=true 
-        axios.post('http://127.0.0.1/data/admindata.php',params)
-          .then(function (response) {
-            _this.tableData = response.data.info 
-            _this.pagetotal = parseInt(response.data.total.AllNum) 
-            _this.tableData.time = _this.getLocalTime(_this.tableData.time) 
-            _this.loading=false 
-          })
-          .catch(function (response) {
-            console.log(response) 
-          }) 
-			}
+		    submit1:function(){
+		    	var _this = this
+		    	if(_this.deve[0].title == '' && _this.deve[0].content == ''){
+		    		alert('请填写完整');
+		    		return false;
+		    	}
+		    	
+		    	var params = new URLSearchParams() 
+						 params.append('status', 'add_deve')
+						 params.append('weight',_this.deve[0].weight)
+						 params.append('year', _this.deve[0].year)
+						 params.append('month',_this.deve[0].month)
+						 params.append('title', _this.deve[0].title)
+						 params.append('content',_this.deve[0].content)
+						 params.append('top',_this.deve[0].top)
+						 var _this = this 		 
+						 _this.loading=true 
+		    	 	 axios.post('http://127.0.0.1/data/admindata.php',params)
+						  .then(function (response) {
+						  	alert('添加成功！');
+						  	_this.getinfo() 
+						  	_this.loading=false
+						  	_this.dialogFormVisible = false
+						  })
+						  .catch(function (response) {
+						    console.log(response) 
+						  }) 
+		    } 
     },
     mounted:function(){
     	 this.getinfo() 
