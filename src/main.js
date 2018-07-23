@@ -6,10 +6,17 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import  VueQuillEditor from 'vue-quill-editor'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import './css/default.css'
 import './css/main.css'
+
+
+import 'quill/dist/quill.snow.css'
+
+
+Vue.use(VueQuillEditor)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 window.axios = axios 

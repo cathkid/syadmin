@@ -9,7 +9,7 @@
 							<img :src="scope.row.img" height="40" />
 						</template>
 				</el-table-column>
-		    <el-table-column  label="操作(只能上传jpg/png文件，且不超过500kb)"> 
+		    <el-table-column  label="操作(只能上传jpg/png文件，且不超过500kb)">
 		    	 <template  scope="scope">
 		        <el-upload
 						  class="upload-demo"
@@ -30,7 +30,7 @@
   		
   		<div class="pagebox">
 				<el-pagination background layout="total,prev, pager, next" :total="pagetotal" :page-sizes="pagesize"  @current-change="handleCurrentChange">
-				</el-pagination>  			
+				</el-pagination>
   		</div>
   		
   </div>
@@ -46,17 +46,17 @@
     },
     methods:{
     	 getinfo:function(){
-    	 	 var params = new URLSearchParams() 
-						 params.append('status', 'banner') 
-				 var _this = this 		 
-				 //_this.loading=true 
+    	 	 var params = new URLSearchParams()
+						 params.append('status', 'banner')
+				 var _this = this
+				 //_this.loading=true
     	 	 axios.post('http://127.0.0.1/data/admindata.php',params)
 				  .then(function (response) {
-				  	_this.tableData = response.data.info 
+				  	_this.tableData = response.data.info
 				  })
 				  .catch(function (response) {
-				    console.log(response) 
-				  }) 
+				    console.log(response)
+				  })
     	 },
     	   handleRemove(file, fileList) {
         	console.log(file, fileList);
@@ -79,7 +79,7 @@
 	      
     },
     mounted:function(){
-    	 this.getinfo() 
+    	 this.getinfo()
     } 
   }
 </script>

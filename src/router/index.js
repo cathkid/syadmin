@@ -5,6 +5,8 @@ import frame from '@/components/frame'
 import nav1 from '@/components/nav1'
 import nav2 from '@/components/nav2'
 import nav3 from '@/components/nav3'
+import newsadd from '@/components/newsadd'
+import newsedit from '@/components/newsedit'
 Vue.use(Router)
 
 export default new Router({
@@ -34,7 +36,21 @@ export default new Router({
                 meta: {
                   requiresAuth: true,
                 }
-            }
+            },
+             {
+               path: "newsedit",
+               component: newsedit,
+               meta: {
+                 requiresAuth: true,
+               }
+             },
+           {
+             path: "newsadd",
+             component: newsadd,
+             meta: {
+               requiresAuth: true,
+             }
+           }
        ]
     },
     {
