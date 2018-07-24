@@ -33,8 +33,8 @@
   		
   		<el-dialog title="添加发展" :visible.sync="dialogFormVisible">
 			  <el-form >
-			    <el-form-item label="权重排序"  >
-			      <el-input v-model="deve[0].weight" value="100" auto-complete="off" placeholder="10的倍数,数值越大越靠前"></el-input>
+			    <el-form-item label="权重排序（数值越小越靠前）"  >
+			      <el-input v-model="deve[0].weight" value="100" auto-complete="off" placeholder="排序"></el-input>
 			    </el-form-item>
 			    <el-form-item label="发展年份"  >
 			      <el-select style="width: 100%;" v-model="deve[0].year" placeholder="请选择年份" >
@@ -76,14 +76,14 @@
 			      <el-input v-model="deve[0].title" auto-complete="off" placeholder="标题名称" value="标题名称"></el-input>
 			    </el-form-item>
 			    
-			    <el-form-item label="发展内容"  >
+			    <!--<el-form-item label="发展内容"  >
 			      <el-input
 					  type="textarea"
 					  :rows="2"
 					  placeholder="请输入内容"
 					  v-model="deve[0].content">
 					 </el-input>
-		    	</el-form-item>
+		    	</el-form-item>-->
 		    	 
 			  </el-form>
 			  <div slot="footer" class="dialog-footer">
@@ -96,8 +96,8 @@
 			
 			<el-dialog title="编辑" :visible.sync="dialogFormVisible1">
 			  <el-form >
-			    <el-form-item label="权重排序"  >
-			      <el-input v-model="deve[0].weight" value="100" auto-complete="off" placeholder="10的倍数,数值越大越靠前"></el-input>
+			    <el-form-item label="权重排序（数值越小越靠前）"  >
+			      <el-input v-model="deve[0].weight" value="100" auto-complete="off" placeholder="排序"></el-input>
 			    </el-form-item>
 			    <el-form-item label="发展年份"  >
 			      <el-select style="width: 100%;" v-model="deve[0].year" placeholder="请选择年份" >
@@ -139,14 +139,14 @@
 			      <el-input v-model="deve[0].title" auto-complete="off" placeholder="标题名称" value="标题名称"></el-input>
 			    </el-form-item>
 			    
-			    <el-form-item label="发展内容"  >
+			    <!--<el-form-item label="发展内容"  >
 			      <el-input
 					  type="textarea"
 					  :rows="2"
 					  placeholder="请输入内容"
 					  v-model="deve[0].content">
 					 </el-input>
-		    	</el-form-item>
+		    	</el-form-item>-->
 		    	 
 			  </el-form>
 			  <div slot="footer" class="dialog-footer">
@@ -232,7 +232,7 @@
 		    },
 		    submit1:function(){
 		    	var _this = this
-		    	if(_this.deve[0].title == '' && _this.deve[0].content == ''){
+		    	if(_this.deve[0].title == ''){
 		    		alert('请填写完整');
 		    		return false;
 		    	}
@@ -243,7 +243,6 @@
 						 params.append('year', _this.deve[0].year)
 						 params.append('month',_this.deve[0].month)
 						 params.append('title', _this.deve[0].title)
-						 params.append('content',_this.deve[0].content)
 						 params.append('top',_this.deve[0].top)
 						 var _this = this 		 
 						 _this.loading=true 
@@ -260,7 +259,7 @@
 		    },
 		    submit2:function(id){
 		    	var _this = this
-		    	if(_this.deve[0].title == '' && _this.deve[0].content == ''){
+		    	if(_this.deve[0].title == ''){
 		    		alert('请填写完整');
 		    		return false;
 		    	}
@@ -270,7 +269,6 @@
 						 params.append('year', _this.deve[0].year)
 						 params.append('month',_this.deve[0].month)
 						 params.append('title', _this.deve[0].title)
-						 params.append('content',_this.deve[0].content)
 						 params.append('top',_this.deve[0].top)
 						 params.append('id',_this.deve[0].id)
 						 var _this = this 		 
