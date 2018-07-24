@@ -12,7 +12,7 @@
 					        	{{username}},操作中心<i class="el-icon-arrow-down el-icon--right"></i>
 					      </span>
 					      <el-dropdown-menu slot="dropdown">
-									<el-dropdown-item   ><a href="/">前端首页</a></el-dropdown-item>
+									<el-dropdown-item   ><a target="_blank" href="/">前端首页</a></el-dropdown-item>
 					        <el-dropdown-item  command="0">注销</el-dropdown-item>
 					        <el-dropdown-item  command="1">修改密码</el-dropdown-item>
 					      </el-dropdown-menu>
@@ -38,7 +38,8 @@
                             <el-menu-item-group>
 							  <el-menu-item  index="1-1" @click="router_path('/frame/nav1')" >广告图</el-menu-item>
                               <el-menu-item  index="1-2" @click="router_path('/frame/nav2')" >发展线路</el-menu-item>
-                           	  <el-menu-item  index="1-3" @click="router_path('/frame/nav3')" >新闻管理</el-menu-item> 	
+                           	  <el-menu-item  index="1-3" @click="router_path('/frame/nav3')" >新闻管理</el-menu-item> 
+                           	  <el-menu-item  index="1-4" @click="router_path('/frame/nav4')" >faq</el-menu-item>
                             </el-menu-item-group>
                           </el-submenu>
 <!--                          <el-menu-item index="2">
@@ -125,9 +126,20 @@ export default {
     		return;
     		
     	}
-    	this.message = '密码修改成功！'
-    	this.centerDialogVisible = true
-    	this.dialogFormVisible = false
+    	var _this = this 		 
+		_this.loading=true 
+    	var params = new URLSearchParams() 
+		  params.append('status', 'editpass')
+		  params.append('password', _this.newpass)
+    	 	 axios.post('/data/admindata.php',params)
+		  .then(function (response) {
+		  	 _this.message = '密码修改成功！'
+	    	 _this.centerDialogVisible = true
+	    	 _this.dialogFormVisible = false
+		  })
+		  .catch(function (response) {
+		    console.log(response) 
+		  }) 
     },
     handleCommand(command) {
         if(command == '0'){

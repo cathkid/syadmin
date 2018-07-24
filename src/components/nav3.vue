@@ -52,7 +52,7 @@
 						 params.append('status', 'newslist') 
 				 var _this = this
          _this.loading=true
-         axios.post('http://127.0.0.1/data/admindata.php',params)
+         axios.post('/data/admindata.php',params)
 				  .then(function (response) {
 				  	_this.tableData = response.data.info
             _this.pagetotal = parseInt(response.data.total.AllNum)
@@ -69,7 +69,7 @@
         var params = new URLSearchParams()
         params.append('status', 'pagenews_list')
         params.append('page', currentPage)
-        axios.post('http://127.0.0.1/data/admindata.php',params)
+        axios.post('/data/admindata.php',params)
           .then(function (response) {
             _this.tableData = response.data.info
             _this.loading=false
@@ -84,7 +84,7 @@
           var params = new URLSearchParams()
           params.append('status', 'del_news_list')
           params.append('id', id)
-          axios.post('http://127.0.0.1/data/admindata.php',params)
+          axios.post('/data/admindata.php',params)
             .then(function (response){
               alert('删除成功！');
               _this.getinfo()

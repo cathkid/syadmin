@@ -41,7 +41,11 @@
   	name:'nav1',
     data() {
       return {
-        tableData: []
+        tableData: [],
+        currentPage:1, 
+        pagesize:[],
+        pagetotal:100,
+        loading:false,
       }
     },
     methods:{
@@ -50,32 +54,47 @@
 						 params.append('status', 'banner')
 				 var _this = this
 				 //_this.loading=true
-    	 	 axios.post('http://127.0.0.1/data/admindata.php',params)
+    	 	 axios.post('/data/admindata.php',params)
 				  .then(function (response) {
 				  	_this.tableData = response.data.info
+				  	_this.pagetotal = parseInt(response.data.total.AllNum) 
 				  })
 				  .catch(function (response) {
 				    console.log(response)
 				  })
     	 },
-    	   handleRemove(file, fileList) {
-        	console.log(file, fileList);
+    	   handleRemove(file) {
+        	console.log(file);
 	      },
 	      handlePreview(file) {
 	        console.log(file);
 	      },
-	      handleExceed(files, fileList) {
-	        this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+	      handleExceed(files) {
+	        this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件`);
 	      },
-	      beforeRemove(file, fileList) {
+	      beforeRemove(file) {
 	        return this.$confirm(`确定移除 ${ file.name }？`);
 	      },
 	      UploadUrl:function(id){
-	      	return 'http://127.0.0.1/data/uploadifive.php?id='+id
+	      	return '/data/uploadifive.php?id='+id
 	      },
-	      uploaddone:function(response, file, fileList){
+	      uploaddone:function(response, file){
 	      	 this.getinfo();
-	      }
+	      },
+				 handleCurrentChange: function(currentPage){ 
+				 this.currentPage = currentPage 
+				 var _this = this 	
+				 _this.loading=true 
+				 var params = new URLSearchParams() 
+						 params.append('status', 'pagebanner')
+						 params.append('page', currentPage) 
+				 		 axios.post('/data/admindata.php',params)
+					  .then(function (response) {
+					  	_this.tableData = response.data.info 
+					  	_this.loading=false 
+					  })
+				 
+				 } 
 	      
     },
     mounted:function(){

@@ -15,7 +15,7 @@
 						<el-col :span="6" >
 						<el-upload
 							class="upload-demo"
-							action="http://127.0.0.1/data/uploadifive_addnews.php"
+							action="/data/uploadifive_addnews.php"
 							:on-preview="handlePreview"
 							:on-remove="handleRemove"
 							:before-remove="beforeRemove"
@@ -109,7 +109,7 @@
                   params.append('img', _this.news[0].img)
                   var _this = this
                   _this.loading=true
-                  axios.post('http://127.0.0.1/data/admindata.php',params)
+                  axios.post('/data/admindata.php',params)
                     .then(function (response) {
                       alert('添加成功！');
                       _this.loading=false
@@ -127,7 +127,7 @@
                   var params = new URLSearchParams()
                   params.append('status', 'add_edit')
                   params.append('id', id)
-                  axios.post('http://127.0.0.1/data/admindata.php',params)
+                  axios.post('/data/admindata.php',params)
                     .then(function (response) {
                       _this.loading=false
                       _this.news[0].id = response.data.info[0].id;
