@@ -7,6 +7,8 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import  VueQuillEditor from 'vue-quill-editor'
+import 'url-search-params-polyfill' 
+import "babel-polyfill"
 
 import 'element-ui/lib/theme-chalk/index.css'
 import './css/default.css'

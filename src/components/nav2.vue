@@ -33,7 +33,7 @@
   		
   		<el-dialog title="添加发展" :visible.sync="dialogFormVisible">
 			  <el-form >
-			    <el-form-item label="权重排序（数值越小越靠前）"  >
+			    <el-form-item label="权重排序（数值越大越靠前）"  >
 			      <el-input v-model="deve[0].weight" value="100" auto-complete="off" placeholder="排序"></el-input>
 			    </el-form-item>
 			    <el-form-item label="发展年份"  >
@@ -96,7 +96,7 @@
 			
 			<el-dialog title="编辑" :visible.sync="dialogFormVisible1">
 			  <el-form >
-			    <el-form-item label="权重排序（数值越小越靠前）"  >
+			    <el-form-item label="权重排序（数值越大越靠前）"  >
 			      <el-input v-model="deve[0].weight" value="100" auto-complete="off" placeholder="排序"></el-input>
 			    </el-form-item>
 			    <el-form-item label="发展年份"  >
