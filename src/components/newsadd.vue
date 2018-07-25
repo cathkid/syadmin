@@ -11,6 +11,17 @@
 					<el-form-item label="新闻描述"  >
 						<el-input v-model="news[0].desc1" value="" auto-complete="off" placeholder="新闻描述40字节以内"></el-input>
 					</el-form-item>
+					<el-form-item label="时间"  >
+						<div style="width: 250px; float: left;">
+						<el-date-picker
+							v-model=news[0].time
+							type="date"
+							value-format="yyyy-MM-dd"
+							align="left"
+							placeholder="选择日期">
+						</el-date-picker>
+						</div>
+					</el-form-item>
 					<el-form-item label="新闻图片"  >
 						<el-col :span="6" >
 						<el-upload
@@ -59,7 +70,7 @@
     data() {
       return {
         tableData: [],
-				news:[{'title':'','desc1':'','content':'','img':''}]
+				news:[{'title':'','desc1':'','content':'','img':'','time':''}]
       }
     },
     methods:{
@@ -106,6 +117,7 @@
                   params.append('content', _this.news[0].content)
                   params.append('desc1',_this.news[0].desc1)
                   params.append('img', _this.news[0].img)
+                  params.append('time', _this.news[0].time)
                   var _this = this
                   _this.loading=true
                   axios.post('/data/admindata.php',params)
