@@ -32,7 +32,7 @@
                           @close="handleClose">
                           <el-submenu index="1">
                             <template slot="title">
-                              <i class="el-icon-location"></i>
+                               <i class="el-icon-menu"></i>
                               <span>页面管理</span>
                             </template>
                             <el-menu-item-group>
@@ -44,7 +44,7 @@
                           </el-submenu>
                           <el-submenu index="2">
                             <template slot="title">
-                              <i class="el-icon-location"></i>
+                               <i class="el-icon-menu"></i>
                               <span>页面管理(英文)</span>
                             </template>
                             <el-menu-item-group>

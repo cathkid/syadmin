@@ -120,7 +120,7 @@
                       alert('添加成功！');
                       _this.loading=false
                       _this.dialogFormVisible = false
-                      _this.$router.push({ path:'/frame/nav3'})
+                      _this.$router.push({ path:'/frame/enav3'})
                     })
                     .catch(function (response) {
                       console.log(response)
