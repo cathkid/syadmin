@@ -44,13 +44,14 @@
 					</el-form-item>
 
 					<el-form-item  >
-					<quill-editor ref="myTextEditor"
+					<!--<quill-editor ref="myTextEditor"
 												v-model="news[0].content"
 												:config="editorOption"
 												@blur="onEditorBlur($event)"
 												@focus="onEditorFocus($event)"
 												@ready="onEditorReady($event)">
-					</quill-editor>
+					</quill-editor>-->
+					<div style="width: 100%;" id="editor"></div>
 					</el-form-item>
 
 					<el-form-item  >
@@ -70,7 +71,13 @@
     data() {
       return {
         tableData: [],
-				news:[{'title':'','desc1':'','content':'','img':'','id':'','time':''}]
+				news:[{'title':'','desc1':'','content':'','img':'','id':'','time':''}],
+				editor: null ,
+				id: Math.random().toString(16).substring(2) + 'ueditorId',
+				config: {
+          initialFrameWidth: null,
+          initialFrameHeight: 350
+        }
       }
     },
     methods:{
@@ -90,19 +97,6 @@
 										console.info(response.fileName)
 										this.news[0].img = response.fileName;
 								},
-								onEditorBlur(editor) {
-									console.log('editor blur!', editor)
-								},
-								onEditorFocus(editor) {
-									console.log('editor focus!', editor)
-								},
-								onEditorReady(editor) {
-									console.log('editor ready!', editor)
-								},
-								onEditorChange({ editor, html, text }) {
-									// console.log('editor change!', editor, html, text)
-									this.news[0].content = html
-								},
       					submit1:function(){
 									console.info(this.news[0]);
                   var _this = this
@@ -115,7 +109,7 @@
                   params.append('status', 'edit_news')
                   params.append('id',_this.news[0].id)
                   params.append('title',_this.news[0].title)
-                  params.append('content', _this.news[0].content)
+                  params.append('content', _this.editor.getContent())
                   params.append('desc1',_this.news[0].desc1)
                   params.append('img', _this.news[0].img)
                   params.append('time', _this.news[0].time)
@@ -148,15 +142,24 @@
                       _this.news[0].img = response.data.info[0].img;
                       _this.news[0].desc1 = response.data.info[0].desc1;
                       _this.news[0].time = response.data.info[0].time;
+                      _this.formatediot();
                     })
                     .catch(function (response) {
                       console.log(response)
-
+							
                     })
+								},
+								formatediot:function(){
+									const _this = this;
+									UE.delEditor('editor');
+						      this.editor = UE.getEditor('editor');
+						      this.editor.addListener("ready", function () {
+						        _this.editor.setContent(_this.news[0].content); // 确保UE加载完成后，放入内容。
+						      })
 								}
 				},
 			mounted:function(){
-					this.getinfo();
+				this.getinfo();
 			}
   }
 </script>

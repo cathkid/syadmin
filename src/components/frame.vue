@@ -33,7 +33,7 @@
                           <el-submenu index="1">
                             <template slot="title">
                               <i class="el-icon-location"></i>
-                              <span>基本操作</span>
+                              <span>页面管理</span>
                             </template>
                             <el-menu-item-group>
 							  <el-menu-item  index="1-1" @click="router_path('/frame/nav1')" >广告图</el-menu-item>
@@ -42,7 +42,19 @@
                            	  <el-menu-item  index="1-4" @click="router_path('/frame/nav4')" >faq</el-menu-item>
                             </el-menu-item-group>
                           </el-submenu>
-<!--                          <el-menu-item index="2">
+                          <el-submenu index="2">
+                            <template slot="title">
+                              <i class="el-icon-location"></i>
+                              <span>页面管理(英文)</span>
+                            </template>
+                            <el-menu-item-group>
+							  <el-menu-item  index="2-1" @click="router_path('/frame/enav1')" >广告图</el-menu-item>
+                              <el-menu-item  index="2-2" @click="router_path('/frame/enav2')" >发展线路</el-menu-item>
+                           	  <el-menu-item  index="2-3" @click="router_path('/frame/enav3')" >新闻管理</el-menu-item> 
+                           	  <el-menu-item  index="4-4" @click="router_path('/frame/enav4')" >faq</el-menu-item>
+                            </el-menu-item-group>
+                          </el-submenu>
+<!--                       <el-menu-item index="2">
                             <i class="el-icon-menu"></i>
                             <span slot="title">导航二</span>
                           </el-menu-item>-->

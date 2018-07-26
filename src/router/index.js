@@ -8,6 +8,12 @@ import nav3 from '@/components/nav3'
 import nav4 from '@/components/nav4'
 import newsadd from '@/components/newsadd'
 import newsedit from '@/components/newsedit'
+import enav1 from '@/components/enav1'
+import enav2 from '@/components/enav2'
+import enav3 from '@/components/enav3'
+import enav4 from '@/components/enav4'
+import enewsadd from '@/components/enewsadd'
+import enewsedit from '@/components/enewsedit'
 Vue.use(Router)
 
 export default new Router({
@@ -55,6 +61,48 @@ export default new Router({
            {
              path: "nav4",
              component: nav4,
+             meta: {
+               requiresAuth: true,
+             }
+           },
+           {
+             path: "enav1",
+             component: enav1,
+             meta: {
+               requiresAuth: true,
+             }
+           },
+           {
+             path: "enav2",
+             component: enav2,
+             meta: {
+               requiresAuth: true,
+             }
+           },
+           {
+             path: "enav3",
+             component: enav3,
+             meta: {
+               requiresAuth: true,
+             }
+           },
+           {
+             path: "enav4",
+             component: enav4,
+             meta: {
+               requiresAuth: true,
+             }
+           },
+           {
+             path: "enewsadd",
+             component: enewsadd,
+             meta: {
+               requiresAuth: true,
+             }
+           },
+           {
+             path: "enewsedit",
+             component: enewsedit,
              meta: {
                requiresAuth: true,
              }

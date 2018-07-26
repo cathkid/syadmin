@@ -10,11 +10,15 @@ import  VueQuillEditor from 'vue-quill-editor'
 import 'url-search-params-polyfill' 
 import "babel-polyfill"
 
+//UE编辑器
+import '../static/UE/ueditor.config.js'
+import '../static/UE/ueditor.all.min.js'
+import '../static/UE/lang/zh-cn/zh-cn.js'
+import '../static/UE/ueditor.parse.min.js'
+
 import 'element-ui/lib/theme-chalk/index.css'
 import './css/default.css'
 import './css/main.css'
-
-
 import 'quill/dist/quill.snow.css'
 
 
