@@ -181,7 +181,7 @@
 						 params.append('status', 'deve')
 				 var _this = this 		 
 				 _this.loading=true 
-    	 	 axios.post('/data/admindata.php',params)
+    	 	 axios.post('../data/admindata.php',params)
 				  .then(function (response) {
 				  	_this.tableData = response.data.info 
 				  	_this.pagetotal = parseInt(response.data.total.AllNum) 
@@ -199,7 +199,7 @@
 			 var params = new URLSearchParams() 
 					 params.append('status', 'pagedeve')
 					 params.append('page', currentPage) 
-			 		 axios.post('/data/admindata.php',params)
+			 		 axios.post('../data/admindata.php',params)
 				  .then(function (response) {
 				  	_this.tableData = response.data.info 
 				  	_this.loading=false 
@@ -217,7 +217,7 @@
 								 var params = new URLSearchParams() 
 										 params.append('status', 'del_deve')
 										 params.append('id', id) 
-								 		 axios.post('/data/admindata.php',params)
+								 		 axios.post('../data/admindata.php',params)
 									  .then(function (response){
 									  	alert('删除成功！'); 
 									  	_this.getinfo() 
@@ -246,7 +246,7 @@
 						 params.append('top',_this.deve[0].top)
 						 var _this = this 		 
 						 _this.loading=true 
-		    	 	 axios.post('/data/admindata.php',params)
+		    	 	 axios.post('../data/admindata.php',params)
 						  .then(function (response) {
 						  	alert('添加成功！');
 						  	_this.getinfo() 
@@ -273,7 +273,7 @@
 						 params.append('id',_this.deve[0].id)
 						 var _this = this 		 
 						 _this.loading=true 
-		    	 	 axios.post('/data/admindata.php',params)
+		    	 	 axios.post('../data/admindata.php',params)
 						  .then(function (response) {
 						  	alert('修改成功！');
 						  	_this.getinfo() 

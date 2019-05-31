@@ -26,7 +26,7 @@
 						<el-col :span="6" >
 						<el-upload
 							class="upload-demo"
-							action="/data/uploadifive_addnews.php"
+							action="../data/uploadifive_addnews.php"
 							:on-preview="handlePreview"
 							:on-remove="handleRemove"
 							:before-remove="beforeRemove"
@@ -117,7 +117,7 @@
                   params.append('time', _this.news[0].time)
                   var _this = this
                   _this.loading=true
-                  axios.post('/data/admindata.php',params)
+                  axios.post('../data/admindata.php',params)
                     .then(function (response) {
                       alert('添加成功！');
                       _this.loading=false

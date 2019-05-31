@@ -33,25 +33,25 @@
                           <el-submenu index="1">
                             <template slot="title">
                                <i class="el-icon-menu"></i>
-                              <span>页面管理</span>
+                              <span>管理(西班牙)</span>
                             </template>
                             <el-menu-item-group>
 							  <el-menu-item  index="1-1" @click="router_path('/frame/nav1')" >广告图</el-menu-item>
-                              <el-menu-item  index="1-2" @click="router_path('/frame/nav2')" >发展线路</el-menu-item>
-                           	  <el-menu-item  index="1-3" @click="router_path('/frame/nav3')" >新闻管理</el-menu-item> 
-                           	  <el-menu-item  index="1-4" @click="router_path('/frame/nav4')" >faq</el-menu-item>
+                              <el-menu-item  index="1-2" @click="router_path('/frame/nav2')" >栏目1</el-menu-item>
+                           	  <el-menu-item  index="1-3" @click="router_path('/frame/nav3')" >栏目1</el-menu-item> 
+                           	  <el-menu-item  index="1-4" @click="router_path('/frame/nav4')" >栏目1</el-menu-item>
                             </el-menu-item-group>
                           </el-submenu>
                           <el-submenu index="2">
                             <template slot="title">
                                <i class="el-icon-menu"></i>
-                              <span>页面管理(英文)</span>
+                              <span>管理(英文)</span>
                             </template>
                             <el-menu-item-group>
 							  <el-menu-item  index="2-1" @click="router_path('/frame/enav1')" >广告图</el-menu-item>
-                              <el-menu-item  index="2-2" @click="router_path('/frame/enav2')" >发展线路</el-menu-item>
-                           	  <el-menu-item  index="2-3" @click="router_path('/frame/enav3')" >新闻管理</el-menu-item> 
-                           	  <el-menu-item  index="4-4" @click="router_path('/frame/enav4')" >faq</el-menu-item>
+                              <el-menu-item  index="2-2" @click="router_path('/frame/enav2')" >栏目1</el-menu-item>
+                           	  <el-menu-item  index="2-3" @click="router_path('/frame/enav3')" >栏目1</el-menu-item> 
+                           	  <el-menu-item  index="4-4" @click="router_path('/frame/enav4')" >栏目1</el-menu-item>
                             </el-menu-item-group>
                           </el-submenu>
 <!--                       <el-menu-item index="2">
@@ -143,7 +143,7 @@ export default {
     	var params = new URLSearchParams() 
 		  params.append('status', 'editpass')
 		  params.append('password', _this.newpass)
-    	 	 axios.post('/data/admindata.php',params)
+    	 	 axios.post('../data/admindata.php',params)
 		  .then(function (response) {
 		  	 _this.message = '密码修改成功！'
 	    	 _this.centerDialogVisible = true

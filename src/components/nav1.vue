@@ -4,7 +4,7 @@
   	  <el-table  v-loading="loading"  :data="tableData" border style="width: 100% overflow: hidden ">
 		    <el-table-column prop="id" label="编号" > </el-table-column>
 		    <el-table-column prop="name" label="分类" > </el-table-column>
-				<el-table-column   label="图片">
+				<el-table-column   label="图片(1920*650)">
 						<template scope="scope">
 							<img :src="scope.row.img" height="40" />
 						</template>
@@ -54,7 +54,7 @@
 						 params.append('status', 'banner')
 				 var _this = this
 				 //_this.loading=true
-    	 	 axios.post('/data/admindata.php',params)
+    	 	 axios.post('../data/admindata.php',params)
 				  .then(function (response) {
 				  	_this.tableData = response.data.info
 				  	_this.pagetotal = parseInt(response.data.total.AllNum) 
@@ -76,7 +76,7 @@
 	        return this.$confirm(`确定移除 ${ file.name }？`);
 	      },
 	      UploadUrl:function(id){
-	      	return '/data/uploadifive.php?id='+id
+	      	return '../data/uploadifive.php?id='+id
 	      },
 	      uploaddone:function(response, file){
 	      	 this.getinfo();
@@ -88,7 +88,7 @@
 				 var params = new URLSearchParams() 
 						 params.append('status', 'pagebanner')
 						 params.append('page', currentPage) 
-				 		 axios.post('/data/admindata.php',params)
+				 		 axios.post('../data/admindata.php',params)
 					  .then(function (response) {
 					  	_this.tableData = response.data.info 
 					  	_this.loading=false 

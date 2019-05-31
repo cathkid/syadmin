@@ -47,7 +47,7 @@
 							 params.append('status', 'login') 
 							 params.append('username',this.input_name) 
 							 params.append('password',this.input_password) 
-							 axios.post('/data/admindata.php',params)
+							 axios.post('../data/admindata.php',params)
 						.then(function (response) {
 									if(response.data.code != '0'){
 												localStorage.login = response.data.username 
