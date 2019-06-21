@@ -42,7 +42,7 @@
                            	  <el-menu-item  index="1-4" @click="router_path('/frame/nav4')" >栏目1</el-menu-item>
                             </el-menu-item-group>
                           </el-submenu>
-                          <el-submenu index="2">
+                          <!--<el-submenu index="2">
                             <template slot="title">
                                <i class="el-icon-menu"></i>
                               <span>管理(英文)</span>
@@ -53,11 +53,7 @@
                            	  <el-menu-item  index="2-3" @click="router_path('/frame/enav3')" >栏目1</el-menu-item> 
                            	  <el-menu-item  index="4-4" @click="router_path('/frame/enav4')" >栏目1</el-menu-item>
                             </el-menu-item-group>
-                          </el-submenu>
-<!--                       <el-menu-item index="2">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title">导航二</span>
-                          </el-menu-item>-->
+                          </el-submenu>-->
                         </el-menu>
                       </el-col>
                     </el-row>
