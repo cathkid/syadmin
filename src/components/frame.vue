@@ -33,13 +33,12 @@
                           <el-submenu index="1">
                             <template slot="title">
                                <i class="el-icon-menu"></i>
-                              <span>管理(西班牙)</span>
+                              <span>后台管理</span>
                             </template>
                             <el-menu-item-group>
 							  <el-menu-item  index="1-1" @click="router_path('/frame/nav1')" >广告图</el-menu-item>
-                              <el-menu-item  index="1-2" @click="router_path('/frame/nav2')" >栏目1</el-menu-item>
-                           	  <el-menu-item  index="1-3" @click="router_path('/frame/nav3')" >栏目1</el-menu-item> 
-                           	  <el-menu-item  index="1-4" @click="router_path('/frame/nav4')" >栏目1</el-menu-item>
+                              <el-menu-item  index="1-2" @click="router_path('/frame/nav2')" >查看留言</el-menu-item>
+                           	  <el-menu-item  index="1-3" @click="router_path('/frame/nav3')" >支付信息</el-menu-item> 
                             </el-menu-item-group>
                           </el-submenu>
                           <!--<el-submenu index="2">
