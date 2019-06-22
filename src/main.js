@@ -41,7 +41,7 @@ new Vue({
         var params = new URLSearchParams() 
         params.append('status', 'checklogin') 
         params.append('username',localStorage.login) 
-        axios.post('http://127.0.0.1/data/admindata.php',params)
+        axios.post('../../data/admindata.php',params)
           .then(function (response) {
             if(response.data.code != '0'){
 

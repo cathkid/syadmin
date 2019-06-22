@@ -12,9 +12,10 @@
 					        	{{username}},操作中心<i class="el-icon-arrow-down el-icon--right"></i>
 					      </span>
 					      <el-dropdown-menu slot="dropdown">
-									<el-dropdown-item   ><a target="_blank" href="/">前端首页</a></el-dropdown-item>
+							<el-dropdown-item   ><a target="_blank" href="/">前端首页</a></el-dropdown-item>
 					        <el-dropdown-item  command="0">注销</el-dropdown-item>
 					        <el-dropdown-item  command="1">修改密码</el-dropdown-item>
+					        <el-dropdown-item  command="2">APP地址</el-dropdown-item>
 					      </el-dropdown-menu>
 					 </el-dropdown>
     			</div>
@@ -77,6 +78,21 @@
 			  </div>
 			</el-dialog>
 			
+			
+			<!-- 修改下载地址  -->
+		    <el-dialog title="修改下载地址" :visible.sync="dialogFormVisible1">
+			  <el-form :model="form">
+			    <el-form-item type="text" label="下载地址" :label-width="formLabelWidth">
+			      <el-input v-model="url" auto-complete="off"></el-input>
+			    </el-form-item>
+			  </el-form>
+			  <div slot="footer" class="dialog-footer">
+			    <el-button @click="dialogFormVisible = false">取 消</el-button>
+			    <el-button type="primary" @click="sureUrl">确 定</el-button>
+			  </div>
+			</el-dialog>
+			
+			
 			<el-dialog
 			  title="提示信息"
 			  :visible.sync="centerDialogVisible"
@@ -97,13 +113,15 @@ export default {
   name: 'frame',
   data(){
   	return {
-  	  username:null,
+  	    username:null,
   		system_status:false,
   		dialogFormVisible:false,
+  		dialogFormVisible1:false,
   		newpass:null,
   		centerDialogVisible:false,
   		message:null,
-      openeds:['1']
+  		url:'',
+        openeds:['1']
   		}
   },
   mounted(){
@@ -125,6 +143,9 @@ export default {
     },
     editpass:function(){
     	this.dialogFormVisible = true
+    },
+    editUrl:function(){
+    	this.dialogFormVisible1 = true
     },
     sureEditPass:function(){
     	if(this.newpass == null){
@@ -148,12 +169,36 @@ export default {
 		    console.log(response) 
 		  }) 
     },
+    sureUrl:function(){
+    	if(this.url == null){
+    		this.message = '下载地址不能为空！'
+    		this.centerDialogVisible = true
+    		return;
+    	}
+    	var _this = this 		 
+		_this.loading=true 
+    	var params = new URLSearchParams() 
+		  params.append('status', 'editUrl')
+		  params.append('url', _this.url)
+    	 	 axios.post('../data/admindata.php',params)
+		  .then(function (response) {
+		  	 _this.message = '下载地址修改成功！'
+	    	 _this.centerDialogVisible = true
+	    	 _this.dialogFormVisible = false
+		  })
+		  .catch(function (response) {
+		    console.log(response) 
+		  }) 
+    },
     handleCommand(command) {
         if(command == '0'){
         	this.unlogin()
         }
         if(command == '1'){
         	this.editpass()
+        }
+        if(command == '2'){
+        	this.editUrl()
         }
     }
   }
