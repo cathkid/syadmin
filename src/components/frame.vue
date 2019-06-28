@@ -13,9 +13,10 @@
 					      </span>
 					      <el-dropdown-menu slot="dropdown">
 							<el-dropdown-item   ><a target="_blank" href="/">前端首页</a></el-dropdown-item>
+							<el-dropdown-item  command="2">APP地址</el-dropdown-item>
+							<el-dropdown-item  command="3">paypal账号</el-dropdown-item>
+							<el-dropdown-item  command="1">修改密码</el-dropdown-item>
 					        <el-dropdown-item  command="0">注销</el-dropdown-item>
-					        <el-dropdown-item  command="1">修改密码</el-dropdown-item>
-					        <el-dropdown-item  command="2">APP地址</el-dropdown-item>
 					      </el-dropdown-menu>
 					 </el-dropdown>
     			</div>
@@ -38,8 +39,10 @@
                             </template>
                             <el-menu-item-group>
 							  <el-menu-item  index="1-1" @click="router_path('/frame/nav1')" >广告图</el-menu-item>
+							  <el-menu-item  index="1-5" @click="router_path('/frame/nav5')" >修改背景</el-menu-item> 
                               <el-menu-item  index="1-2" @click="router_path('/frame/nav2')" >查看留言</el-menu-item>
                            	  <el-menu-item  index="1-3" @click="router_path('/frame/nav3')" >支付信息</el-menu-item> 
+                           	  <el-menu-item  index="1-4" @click="router_path('/frame/nav4')" >套餐内容</el-menu-item> 
                             </el-menu-item-group>
                           </el-submenu>
                           <!--<el-submenu index="2">
@@ -87,8 +90,21 @@
 			    </el-form-item>
 			  </el-form>
 			  <div slot="footer" class="dialog-footer">
-			    <el-button @click="dialogFormVisible = false">取 消</el-button>
+			    <el-button @click="dialogFormVisible1 = false">取 消</el-button>
 			    <el-button type="primary" @click="sureUrl">确 定</el-button>
+			  </div>
+			</el-dialog>
+			
+			<!-- 修改下Paypal账号  -->
+		    <el-dialog title="修改下Paypal账号" :visible.sync="dialogFormVisible2">
+			  <el-form :model="form">
+			    <el-form-item type="text" label="Paypal账号" :label-width="formLabelWidth">
+			      <el-input v-model="paypal" auto-complete="off"></el-input>
+			    </el-form-item>
+			  </el-form>
+			  <div slot="footer" class="dialog-footer">
+			    <el-button @click="dialogFormVisible2 = false">取 消</el-button>
+			    <el-button type="primary" @click="surePaypal">确 定</el-button>
 			  </div>
 			</el-dialog>
 			
@@ -117,10 +133,12 @@ export default {
   		system_status:false,
   		dialogFormVisible:false,
   		dialogFormVisible1:false,
+  		dialogFormVisible2:false,
   		newpass:null,
   		centerDialogVisible:false,
   		message:null,
   		url:'',
+  		paypal:'',
         openeds:['1']
   		}
   },
@@ -146,6 +164,9 @@ export default {
     },
     editUrl:function(){
     	this.dialogFormVisible1 = true
+    },
+    editPaypal:function(){
+    	this.dialogFormVisible2 = true
     },
     sureEditPass:function(){
     	if(this.newpass == null){
@@ -184,7 +205,28 @@ export default {
 		  .then(function (response) {
 		  	 _this.message = '下载地址修改成功！'
 	    	 _this.centerDialogVisible = true
-	    	 _this.dialogFormVisible = false
+	    	 _this.dialogFormVisible1 = false
+		  })
+		  .catch(function (response) {
+		    console.log(response) 
+		  }) 
+    },
+    surePaypal:function(){
+    	if(this.paypal == null){
+    		this.message = 'paypal账号不能为空！'
+    		this.centerDialogVisible = true
+    		return;
+    	}
+    	var _this = this 		 
+		_this.loading=true 
+    	var params = new URLSearchParams() 
+		  params.append('status', 'editPaypal')
+		  params.append('paypal', _this.paypal)
+    	 	 axios.post('../data/admindata.php',params)
+		  .then(function (response) {
+		  	 _this.message = 'paypal账号修改成功！'
+	    	 _this.centerDialogVisible = true
+	    	 _this.dialogFormVisible2 = false
 		  })
 		  .catch(function (response) {
 		    console.log(response) 
@@ -199,6 +241,9 @@ export default {
         }
         if(command == '2'){
         	this.editUrl()
+        }
+        if(command == '3'){
+        	this.editPaypal()
         }
     }
   }
