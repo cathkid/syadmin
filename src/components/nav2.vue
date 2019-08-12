@@ -7,6 +7,7 @@
   	  <el-table  v-loading="loading"  :data="tableData" border style="width: 100% overflow: hidden ">
 		    <el-table-column prop="id" label="编号" > </el-table-column>
 		    <el-table-column prop="name" sortable label="姓名" > </el-table-column>
+		    <el-table-column  prop="email"  label="邮箱"> </el-table-column>
 		    <el-table-column  prop="content"  label="主题"> </el-table-column>
 		    <el-table-column  prop="country" label="国家"> </el-table-column>
 		    <el-table-column  prop="mess" label="内容"> </el-table-column>
