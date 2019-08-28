@@ -7,6 +7,7 @@
 		    <el-table-column prop="id" label="编号" > </el-table-column>
 		    <el-table-column  prop="name" sortable label="姓名" > </el-table-column>
 		    <el-table-column  prop="country" sortable label="国家" > </el-table-column>
+		    <el-table-column  prop="email" sortable label="邮箱" > </el-table-column>
 		    <el-table-column  prop="name_last" sortable label="电话" > </el-table-column>
 		    <el-table-column  prop="pay_time" sortable label="支付时间" > </el-table-column>
 		    <el-table-column  prop="status"  label="状态"> </el-table-column>
